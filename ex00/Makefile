@@ -1,5 +1,5 @@
 
-NAME = phonebook
+NAME = template
 
 CXX = c++
 CXXFLAGS = -MMD -g3 -Wall -Wextra -Werror -std=c++98
@@ -11,7 +11,6 @@ SRCS_PATH = ./srcs/
 OBJ_PATH = ./objs/
 
 SRCS = $(addprefix $(SRCS_PATH), \
-		functions.cpp \
 		main.cpp)
 
 OBJS	= $(SRCS:$(SRCS_PATH)%.cpp=$(OBJ_PATH)%.o)
@@ -40,22 +39,7 @@ re: fclean
 grind: ${NAME}
 		valgrind ./$(NAME)
 
-bin: re $(NAME)
+run: $(NAME)
 	./$(NAME)
-
-test: $(NAME)
-	./tester_working_display.sh
-
-badt: $(NAME) 
-	./tester_bad_input.sh
-
-badi: $(NAME)
-	./tester_bad_idx.sh
-
-maxt: $(NAME)
-	./tester_max_entries.sh
-
-db: re $(NAME)
-	lldb ./phonebook
 
 .PHONY: clean fclean re grind test
