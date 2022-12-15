@@ -18,12 +18,18 @@ void multiply(T& elem)
 	elem *= 2;
 }
 
-template<typename T>
-void capitalizer(T& elem)
+template <typename T>
+void transform(T& elem)
 {
-	int size = strlen(elem);
-	for (int i = 0; i < size ; i++)
-		std::toupper(elem[i]);
+	multiply(elem);
+}
+
+template <typename T>
+void test(T input[5])
+{
+	iter(input, 5, &transform<T>);
+	for (int i = 0; i < 5; i++)
+		std::cout << input[i] << std::endl;
 }
 
 #endif
