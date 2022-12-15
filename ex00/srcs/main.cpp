@@ -3,98 +3,41 @@
 #include <iostream>
 #include <string>
 
+#define PRINTED_TEST(arg1, arg2, func, type)                                    \
+	do                                                                          \
+	{                                                                           \
+		std::cout << BBLU << "____" #func " " #type "____" << RES << std::endl; \
+		test(arg1, arg2, &func);                                                \
+	} while (0);
+
+template <typename T>
+void test(T const &arg1, T const &arg2, T const &(*f)(T const &, T const &))
+{
+	std::cout << arg1 << " <> " << arg2 << " -> " << f(arg1, arg2) << std::endl;
+}
+
+template <typename T>
+void test(T &arg1, T &arg2, void (*f)(T &, T &))
+{
+	std::cout << arg1 << " swap " << arg2 << " -> ";
+	f(arg1, arg2);
+	std::cout << arg1 << " swapped " << arg2 << std::endl;
+}
+
 int main()
 {
-	int i = 42;
-	int j = 24;
+	PRINTED_TEST(42, 24, min, int);
+	PRINTED_TEST(2.3f, 420.042f, min, float);
+	PRINTED_TEST(std::string("salut"), std::string("SALUT"), min, std::string);
 
-	std::string str1 = "salut";
-	std::string str2 = "SALUT";
+	PRINTED_TEST(42, 24, max, int);
+	PRINTED_TEST(2.3f, 420.042f, max, float);
+	PRINTED_TEST(std::string("salut"), std::string("SALUT"), max, std::string);
 
-	char a = 'a';
-	char b = 'b';
-
-	// float f1 = 420, 042f;
-	// float f2 = 34, 87f;
-
-	std::cout << BCYN << "_____CHECK SWAP______" << RES << std::endl;
-	std::cout << BBLU << "_____with char: ______" << RES << std::endl;
-	std::cout << BBLU << "data before swap :" << RES << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	swap(a, b);
-	std::cout << BBLU << "data AFTER swap :" << RES << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << BBLU << "_____with int: ______" << RES << std::endl;
-	std::cout << BBLU << "data before swap :" << RES << std::endl;
-	std::cout << i << std::endl;
-	std::cout << j << std::endl;
-	swap(i, j);
-	std::cout << BBLU << "data AFTER swap :" << RES << std::endl;
-	std::cout << i << std::endl;
-	std::cout << j << std::endl;
-	std::cout << BBLU << "_____with str: ______" << RES << std::endl;
-	std::cout << BBLU << "data before swap :" << RES << std::endl;
-	std::cout << str1 << std::endl;
-	std::cout << str2 << std::endl;
-	swap(str1, str2);
-	std::cout << BBLU << "data AFTER swap :" << RES << std::endl;
-	std::cout << str1 << std::endl;
-	std::cout << str2 << std::endl;
-
-	std::cout << BCYN << "_____CHECK MIN______" << RES << std::endl;
-	std::cout << BBLU << "_____with char: ______" << RES << std::endl;
-	std::cout << BBLU << "data before min :" << RES << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << BBLU << "min val between: " << a << " and " << b << RES << std::endl;
-	std::cout << min(a, b) << std::endl;
-	std::cout << BBLU << "_____with int: ______" << RES << std::endl;
-	std::cout << BBLU << "data before min :" << RES << std::endl;
-	std::cout << i << std::endl;
-	std::cout << j << std::endl;
-	std::cout << BBLU << "min val between: " << i << " and " << j << RES << std::endl;
-	std::cout << min(i, j) << std::endl;
-	std::cout << BBLU << "_____with str: ______" << RES << std::endl;
-	std::cout << BBLU << "data before min :" << RES << std::endl;
-	std::cout << str1 << std::endl;
-	std::cout << str2 << std::endl;
-	std::cout << BBLU << "min val between: " << str1 << " and " << str2 << RES << std::endl;
-	std::cout << min(str1, str2) << std::endl;
-
-	std::cout << BCYN << "_____CHECK MAX______" << RES << std::endl;
-	std::cout << BBLU << "_____with char: ______" << RES << std::endl;
-	std::cout << BBLU << "data before max :" << RES << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << BBLU << "max val between: " << a << " and " << b << RES << std::endl;
-	std::cout << max(a, b) << std::endl;
-	std::cout << BBLU << "_____with int: ______" << RES << std::endl;
-	std::cout << BBLU << "data before min :" << RES << std::endl;
-	std::cout << i << std::endl;
-	std::cout << j << std::endl;
-	std::cout << BBLU << "max val between: " << i << " and " << j << RES << std::endl;
-	std::cout << max(i, j) << std::endl;
-	std::cout << BBLU << "_____with str: ______" << RES << std::endl;
-	std::cout << BBLU << "data before max :" << RES << std::endl;
-	std::cout << str1 << std::endl;
-	std::cout << str2 << std::endl;
-	std::cout << BBLU << "max val between: " << str1 << " and " << str2 << RES << std::endl;
-	std::cout << max(str1, str2) << std::endl;
-	{
-		std::cout << BRED << "main du sujet" << RES << std::endl;
-		int a = 2;
-		int b = 3;
-		::swap(a, b);
-		std::cout << "a = " << a << ", b = " << b << std::endl;
-		std::cout << "min( a, b ) = " << ::min(a, b) << std::endl;
-		std::cout << "max( a, b ) = " << ::max(a, b) << std::endl;
-		std::string c = "chaine1";
-		std::string d = "chaine2";
-		::swap(c, d);
-		std::cout << "c = " << c << ", d = " << d << std::endl;
-		std::cout << "min( c, d ) = " << ::min(c, d) << std::endl;
-		std::cout << "max( c, d ) = " << ::max(c, d) << std::endl;
-	}
+	int a = 42, b =45;
+	PRINTED_TEST(a, b, swap, int);
+	float c = 42.34f, d = 8.9f;
+	PRINTED_TEST(c, d, swap, float);
+	std::string str1 = "pouet", str2 = "coucou";
+	PRINTED_TEST(str1, str2, swap, std::string);
 }

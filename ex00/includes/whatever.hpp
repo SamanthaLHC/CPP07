@@ -9,16 +9,17 @@ void swap(T& a, T& b)
 	b = tmp;
 }
 
-template<typename T>
-T min(T& a, T& b)
+template <typename T> 
+T const& min(T const& x, T const& y)
 {
-	return (a < b ? a : b);
+	return (x < y ? x : y);
 }
 
-template<typename T>
-T max(T& a, T& b)
+
+template <typename T> 
+T const& max(T const& x, T const& y)
 {
-	return (a > b ? a : b);
+	return (x > y ? x : y);
 }
 
 #endif
