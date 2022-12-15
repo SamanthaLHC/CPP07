@@ -11,13 +11,13 @@
 	} while (0);
 
 template <typename T>
-void test(T const &arg1, T const &arg2, T const &(*f)(T const &, T const &))
+void test(T const& arg1, T const& arg2, T const& (*f)(T const&, T const&))
 {
 	std::cout << arg1 << " <> " << arg2 << " -> " << f(arg1, arg2) << std::endl;
 }
 
 template <typename T>
-void test(T &arg1, T &arg2, void (*f)(T &, T &))
+void test(T& arg1, T& arg2, void (*f)(T&, T&))
 {
 	std::cout << arg1 << " swap " << arg2 << " -> ";
 	f(arg1, arg2);
