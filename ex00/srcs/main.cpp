@@ -41,3 +41,4 @@ int main()
 	std::string str1 = "pouet", str2 = "coucou";
 	PRINTED_TEST(str1, str2, swap, std::string);
 }
+
