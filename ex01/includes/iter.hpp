@@ -4,9 +4,9 @@
 #include <iostream>
 
 template<typename T>
-void iter(T *arr , int size, void (*f)(T& element))
+void iter(T *arr , unsigned int size, void (*f)(T& element))
 {
-	for (int i = 0; i < size; i++)
+	for (unsigned int i = 0; i < size; i++)
 	{
 		f(arr[i]);
 	}
@@ -28,7 +28,7 @@ template <typename T>
 void test(T input[5])
 {
 	iter(input, 5, &transform<T>);
-	for (int i = 0; i < 5; i++)
+	for (unsigned int i = 0; i < 5; i++)
 		std::cout << input[i] << std::endl;
 }
 
