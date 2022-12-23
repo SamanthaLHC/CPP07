@@ -8,14 +8,13 @@ void capitalizer(std::string& elem)
 {
 	unsigned int size = elem.length();
 	for (unsigned int i = 0; i < size ; i++)
-		elem[i] = std::toupper(elem[i]);
+		elem[i] = std::toupper(elem[i]);  
 }
 template <>
 void transform<std::string>(std::string& elem)
 {
 	capitalizer(elem);
 }
-
 
 int main()
 {

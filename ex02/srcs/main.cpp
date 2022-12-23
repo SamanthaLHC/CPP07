@@ -14,7 +14,6 @@
 		std::cout << BRED << "copy failed" << RES << std::endl; \
 } while (0)
 
-//_____________________MACRO____________________________________________________
 
 #define MAX_VAL 750
 
@@ -64,7 +63,7 @@ int main()
     }
     try
     {
-        numbers[MAX_VAL] = 0;
+        numbers[752] = 0;
     }
     catch(const std::exception& e)
     {

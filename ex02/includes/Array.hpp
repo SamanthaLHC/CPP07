@@ -14,7 +14,7 @@ public:
 
 	Array<T>() : _array(NULL), _n(0)
 	{
-		std::cout << BWHT << "Default cconstructor called" << RES << std::endl;
+		std::cout << BWHT << "Default constructor called" << RES << std::endl;
 	}
 
 	Array<T>(unsigned int n) : _array(new T[n]), _n(n)
@@ -22,12 +22,9 @@ public:
 		std::cout << BWHT << "Constructor overload (n in param) called" << RES << std::endl;
 	}
 
-	Array<T>(Array<T> const &cpy)
+	Array<T>(Array<T> const &cpy) : _array(NULL), _n(0)
 	{
 		std::cout << BWHT << "Copy constructor called" << RES << std::endl;
-		for (unsigned int i = 0; i < this->_n; i++)
-			this->_array[i] = cpy._array[i];
-		this->_array = new T[this->_n];
 		*this = cpy;
 	}
 
