@@ -16,8 +16,8 @@ public:
 	{
 		std::cout << BWHT << "Default constructor called" << RES << std::endl;
 	}
-
-	Array<T>(unsigned int n) : _array(new T[n]), _n(n)
+// Il faut remplir le tableau 
+	Array<T>(unsigned int n) : _array(new T[n]()), _n(n)
 	{
 		std::cout << BWHT << "Constructor overload (n in param) called" << RES << std::endl;
 	}
@@ -31,7 +31,8 @@ public:
 	~Array<T>()
 	{
 		std::cout << BWHT << "Destructor called" << RES << std::endl;
-		delete[] this->_array;
+                if (this->_array)
+		     delete[] this->_array;
 	}
 
 	//______________Operator overload___________________________________________
